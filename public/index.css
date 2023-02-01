@@ -1,0 +1,99 @@
+@font-face {
+	font-family: "JetBrains Mono";
+	src: url("/font.ttf");
+}
+
+html {
+	color-scheme: dark !important;
+}
+
+body {
+	font-family: "JetBrains Mono";
+	margin: 0;
+	background: #0d1116;
+	color: white;
+}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+h1 {
+	font-size: 23px;
+	opacity: 80%;
+}
+
+.github-items {
+	height: 85vh;
+	overflow: scroll;
+	border-top: 1px solid;
+	border-bottom: 1px solid;
+	border-color: #BBB5AC;
+	padding-bottom: 0px;
+	padding-top: 40px;
+	padding-right: 30px;
+	padding-left: 30px;
+	border-radius: 20px;
+}
+
+.item {
+	max-width: 340px;
+	margin-bottom: 30px;
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+}
+
+
+.item a {
+	font-size: 14px;
+	color: #5CB8E4;
+	text-decoration: none;
+}
+
+.item a:visited {
+	color: #4892b4;
+}
+
+.title:hover {
+	text-decoration: underline;
+}
+
+.desc {
+	font-size: 12px;
+	color: #F2F2F2;
+	opacity: 70%;
+}
+
+.info {
+	font-size: 11px;
+	color: #BBB5AC;
+	display: flex;
+	justify-content: space-between;
+}
+
+.icon {
+	fill: #BBB5AC;
+	height: 12px;
+	width: 12px;
+}
+
+.icon svg {
+	display: block;
+	height: 12px;
+	width: 12px;
+}
+
+.info > div {
+	display: flex;
+	height: fit-content;
+	align-items: center;
+	gap: 6px;
+}
+
+.lang .icon {
+	border-radius: 50%;
+}

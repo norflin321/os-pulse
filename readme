@@ -1,0 +1,7 @@
+it will update content every n min, and generate static html page
+
+Content Resources:
+1. [x] https://github.com/trending
+2. [x] https://news.ycombinator.com
+3. [x] https://news.ycombinator.com/show
+4. ...
