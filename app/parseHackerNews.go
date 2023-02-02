@@ -7,9 +7,11 @@ import (
 	"github.com/PuerkitoBio/goquery"
 )
 
-type HNItem map[string]string
+type HNItem struct {
+	sitebit, link, title, info string
+}
 
-func parseHackerNews(page string) []HNItem {
+func parseHackerNews(id int, channel chan parseRes, page string) {
 	fmt.Println("Parse HackerNews...", page)
 	items := make([]HNItem, 0)
 
@@ -17,7 +19,7 @@ func parseHackerNews(page string) []HNItem {
 
 	// collect information from title element
 	html.Find(".athing").Each(func(i int, s *goquery.Selection) {
-		item := make(HNItem)
+		item := HNItem{}
 
 		titleEl := s.Find(".titleline")
 		link, _ := titleEl.Find("a").Attr("href")
@@ -27,21 +29,35 @@ func parseHackerNews(page string) []HNItem {
 			sitebit, _ = sitebitEl.Attr("href")
 			sitebit = sitebit[10:]
 		}
-		item["sitebit"] = sitebit
+		item.sitebit = sitebit
 		if sitebit == "" {
-			item["link"] = "https://news.ycombinator.com/" + link
+			item.link = "https://news.ycombinator.com/" + link
 		} else {
-			item["link"] = link
+			item.link = link
 		}
-		item["title"] = titleEl.Find("a").Nodes[0].FirstChild.Data
+		item.title = titleEl.Find("a").Nodes[0].FirstChild.Data
 
 		items = append(items, item)
 	})
 
 	// collect information from undertitle element
 	html.Find(".subtext").Each(func(i int, s *goquery.Selection) {
-		items[i]["info"] = strings.ReplaceAll(prettyStr(s.Text()), " | hide | ", " ")
+		info := prettyStr(s.Text())
+		info = strings.ReplaceAll(info, " | hide | ", " ")
+		info = strings.ReplaceAll(info, " | ", " ")
+		items[i].info = info
 	})
 
-	return items
+	// create html
+	itemsHtml := ""
+	for _, item := range items {
+		itemsHtml += fmt.Sprintf(hackerNewsItemHtml, item.link, item.title, item.info)
+	}
+
+	title := "Hacker News"
+	if page == "/show" {
+		title += " Show"
+	}
+
+	channel <- parseRes{id, fmt.Sprintf(columnHtml, title, itemsHtml)}
 }

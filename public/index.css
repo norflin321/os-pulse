@@ -1,6 +1,6 @@
 @font-face {
 	font-family: "JetBrains Mono";
-	src: url("/font.ttf");
+	src: url("assets/font.ttf");
 }
 
 html {
@@ -12,13 +12,26 @@ body {
 	margin: 0;
 	background: #0d1116;
 	color: white;
+	padding-left: 30px;
+	padding-right: 30px;
 }
 
 .container {
 	display: flex;
-	justify-content: center;
-	align-items: center;
+	justify-content: space-around;
+	align-items: flex-start;
 	height: 100vh;
+	flex-wrap: wrap;
+}
+
+.column {
+	padding-top: 30px
+}
+
+@media (max-width: 1300px) {
+	.column:last-child {
+		padding-bottom: 45px
+	}
 }
 
 h1 {
@@ -26,17 +39,18 @@ h1 {
 	opacity: 80%;
 }
 
-.github-items {
-	height: 85vh;
-	overflow: scroll;
-	border-top: 1px solid;
-	border-bottom: 1px solid;
+.items {
+	height: 82vh;
+	overflow-y: scroll;
+	border-top: 1px;
+	border-top-style: dashed;
+	border-bottom: 0.5px;
+	border-bottom-style: dashed;
 	border-color: #BBB5AC;
-	padding-bottom: 0px;
 	padding-top: 40px;
-	padding-right: 30px;
-	padding-left: 30px;
-	border-radius: 20px;
+	padding-right: 35px;
+	padding-left: 35px;
+	box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset, rgb(0 0 0 / 30%) 0px 18px 36px -18px inset;
 }
 
 .item {
@@ -52,6 +66,7 @@ h1 {
 	font-size: 14px;
 	color: #5CB8E4;
 	text-decoration: none;
+	width: fit-content;
 }
 
 .item a:visited {
@@ -76,7 +91,6 @@ h1 {
 }
 
 .icon {
-	fill: #BBB5AC;
 	height: 12px;
 	width: 12px;
 }
@@ -96,4 +110,23 @@ h1 {
 
 .lang .icon {
 	border-radius: 50%;
+}
+
+.github-icon {
+	position: absolute;
+	bottom: 7px;
+	right: 12px;
+}
+
+@media (max-width: 1300px) {
+	.github-icon {
+		top: 7px;
+		right: 12px;
+	}
+}
+
+.github-icon img {
+	height: 20px;
+	width: 20px;
+	opacity: 30%;
 }

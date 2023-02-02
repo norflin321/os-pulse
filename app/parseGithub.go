@@ -11,7 +11,7 @@ type GithubItem struct {
 	link, title, desc, langColor, lang, stars, forks, starsToday string
 }
 
-func parseGithub() string {
+func parseGithub(id int, channel chan parseRes) {
 	fmt.Println("Parse Github...")
 	items := make([]GithubItem, 0)
 
@@ -62,5 +62,6 @@ func parseGithub() string {
 		}
 		itemsHtml += fmt.Sprintf(githubItemHtml, item.link, item.title, item.desc, langDiv, item.stars, item.forks, item.starsToday)
 	}
-	return fmt.Sprintf(githubColumnHtml, itemsHtml)
+
+	channel <- parseRes{id, fmt.Sprintf(columnHtml, "Github Trending", itemsHtml)}
 }
