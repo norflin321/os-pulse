@@ -1,6 +1,7 @@
-it will update content every n min, and generate static html page
+it parses content from websites listed below every minute, and updates static html file (which is served on home page).
+PS. pull request for adding new website would be appreciated ^_^
 
-Content Resources:
+Websites:
 1. [x] https://github.com/trending
 2. [x] https://news.ycombinator.com
 3. [x] https://news.ycombinator.com/show

@@ -13,10 +13,11 @@ type GithubItem struct {
 
 func parseGithub(id int, channel chan parseRes) {
 	fmt.Println("Parse Github...")
+	const url = "https://github.com/trending"
 	items := make([]GithubItem, 0)
 
 	// parse wepage and collect information
-	fetchHtmlPage("https://github.com/trending").Find("article").Each(func(_ int, article *goquery.Selection) {
+	fetchHtmlPage(url).Find("article").Each(func(_ int, article *goquery.Selection) {
 		item := GithubItem{}
 		link, _ := article.Find(".lh-condensed").Find("a").Attr("href")
 		item.link = "https://github.com" + link
@@ -63,5 +64,5 @@ func parseGithub(id int, channel chan parseRes) {
 		itemsHtml += fmt.Sprintf(githubItemHtml, item.link, item.title, item.desc, langDiv, item.stars, item.forks, item.starsToday)
 	}
 
-	channel <- parseRes{id, fmt.Sprintf(columnHtml, "Github Trending", itemsHtml)}
+	channel <- parseRes{id, fmt.Sprintf(columnHtml, "Github Trending", url, itemsHtml)}
 }

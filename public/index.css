@@ -49,8 +49,8 @@ h1 {
 	border-color: #BBB5AC;
 	padding-top: 40px;
 	padding-right: 35px;
-	padding-left: 35px;
-	box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset, rgb(0 0 0 / 30%) 0px 18px 36px -18px inset;
+	padding-left: 30px;
+	/* box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset, rgb(0 0 0 / 30%) 0px 18px 36px -18px inset; */
 }
 
 .item {
@@ -70,7 +70,7 @@ h1 {
 }
 
 .item a:visited {
-	color: #4892b4;
+	color: #3f7e9a;
 }
 
 .title:hover {
@@ -129,4 +129,20 @@ h1 {
 	height: 20px;
 	width: 20px;
 	opacity: 30%;
+}
+
+.column-head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.goto-icon {
+	margin-bottom: -5px;
+}
+
+.goto-icon img {
+	height: 20px;
+	width: 20px;
+	opacity: 80%;
 }

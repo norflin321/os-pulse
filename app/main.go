@@ -38,7 +38,7 @@ func updateHtml() {
 	defer file.Close()
 
 	fmt.Println("-- updated", time.Now().Format("2006-01-02 15:04:05"))
-	time.Sleep(time.Second * 5)
+	time.Sleep(time.Second * 60 * 1)
 	updateHtml()
 }
 

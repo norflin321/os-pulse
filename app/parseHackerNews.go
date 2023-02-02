@@ -13,9 +13,10 @@ type HNItem struct {
 
 func parseHackerNews(id int, channel chan parseRes, page string) {
 	fmt.Println("Parse HackerNews...", page)
+	const url = "https://news.ycombinator.com"
 	items := make([]HNItem, 0)
 
-	html := fetchHtmlPage("https://news.ycombinator.com" + page)
+	html := fetchHtmlPage(url + page)
 
 	// collect information from title element
 	html.Find(".athing").Each(func(i int, s *goquery.Selection) {
@@ -59,5 +60,5 @@ func parseHackerNews(id int, channel chan parseRes, page string) {
 		title += " Show"
 	}
 
-	channel <- parseRes{id, fmt.Sprintf(columnHtml, title, itemsHtml)}
+	channel <- parseRes{id, fmt.Sprintf(columnHtml, title, url+page, itemsHtml)}
 }

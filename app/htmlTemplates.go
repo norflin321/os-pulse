@@ -7,20 +7,25 @@ const baseHtml = `
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width,initial-scale=1">
 			<meta http-equiv="X-UA-Compatible" content="IE=edge">
-			<title>Pulse</title>
+			<title>os_pulse</title>
 			<link href="index.css" rel="stylesheet" />
 		</head>
 	<body>
 		<div class="container">%s</div>
 		<a class="github-icon" href="https://github.com/norflin321">
-			<img src="assets/github-mark-white.svg"/>
+			<img src="assets/github.svg"/>
 		</a>
 	</body>
 	</html>
 `
 
 const columnHtml = `
-<h1>%s</h1>
+<div class="column-head">
+	<h1>%s</h1>
+	<a class="goto-icon" href="%s">
+		<img src="assets/goto.svg"/>
+	</a>
+</div>
 <div class="items">
 	%s
 </div>
