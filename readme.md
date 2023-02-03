@@ -2,7 +2,7 @@
 
 `go run .`
 
-it server static html file with content from resources listed below, which is updated every 10 minutes
+it serves a static html file with content from resources listed below, which is updated every 10 minutes
 - https://github.com/trending
 - https://news.ycombinator.com
 - https://news.ycombinator.com/show
