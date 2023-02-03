@@ -1,9 +1,0 @@
-go build -o ./out ./app
-
-it parses content from websites listed below every minute, and updates static html file (which is served on home page).
-
-Websites:
-1. [x] https://github.com/trending
-2. [x] https://news.ycombinator.com
-3. [x] https://news.ycombinator.com/show
-4. ...
