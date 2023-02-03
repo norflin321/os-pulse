@@ -1,8 +1,8 @@
-<img width="1599" alt="Screenshot 2023-02-03 at 8 55 37 AM" src="https://user-images.githubusercontent.com/33498670/216523703-3dc435fc-f092-41e6-8ffb-28c59d88c43c.png">
+<img width="1595" alt="Screenshot 2023-02-04 at 12 02 08 AM" src="https://user-images.githubusercontent.com/33498670/216710122-6ed989d0-d594-4fc8-9cd0-d9038abfa458.png">
 
 `go run .`
 
-it parses content from resources listed below every minute, and updates static html file (which is served on home page).
+it server static html file with content from resources listed below, which is updated every 10 minutes
 - https://github.com/trending
 - https://news.ycombinator.com
 - https://news.ycombinator.com/show
