@@ -47,5 +47,5 @@ func main() {
 
 	// start server
 	http.Handle("/", http.FileServer(http.Dir("./public")))
-	http.ListenAndServe(":3000", nil)
+	http.ListenAndServe(":8080", nil)
 }
