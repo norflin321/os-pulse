@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ type GithubItem struct {
 	link, title, desc, langColor, lang, stars, forks, starsToday string
 }
 
-func parseGithub(id int, channel chan parseRes) {
+func parseGithub(id int, channel chan ParseResult) {
 	fmt.Println("Parse Github...")
 	const url = "https://github.com/trending"
 	items := make([]GithubItem, 0)
@@ -21,8 +21,8 @@ func parseGithub(id int, channel chan parseRes) {
 		item := GithubItem{}
 		link, _ := article.Find(".lh-condensed").Find("a").Attr("href")
 		item.link = "https://github.com" + link
-		item.title = prettyStr(article.Find("h1").Text())
-		item.desc = prettyStr(article.Find("p").Text())
+		item.title = PrettyStr(article.Find("h1").Text())
+		item.desc = PrettyStr(article.Find("p").Text())
 
 		// find language element and color
 		langColorEl := article.Find(".repo-language-color").Nodes
@@ -34,7 +34,7 @@ func parseGithub(id int, channel chan parseRes) {
 		item.langColor = langColor
 
 		// find info element
-		info := prettyStr(article.Find(".d-inline-block").Text())
+		info := PrettyStr(article.Find(".d-inline-block").Text())
 		infoSlice := strings.Fields(info)
 		if len(langColor) == 0 {
 			infoSlice = append([]string{""}, infoSlice...)
@@ -64,5 +64,5 @@ func parseGithub(id int, channel chan parseRes) {
 		itemsHtml += fmt.Sprintf(githubItemHtml, item.link, item.title, item.desc, langDiv, item.stars, item.forks, item.starsToday)
 	}
 
-	channel <- parseRes{id, fmt.Sprintf(columnHtml, "Github Trending", url, itemsHtml)}
+	channel <- ParseResult{id, fmt.Sprintf(columnHtml, "Github Trending", url, itemsHtml)}
 }

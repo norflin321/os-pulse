@@ -1,14 +1,9 @@
-@font-face {
-	font-family: "JetBrains Mono";
-	src: url("assets/font.ttf");
-}
-
 html {
 	color-scheme: dark !important;
 }
 
 body {
-	font-family: "JetBrains Mono";
+	font-family: 'JetBrains Mono', monospace;
 	margin: 0;
 	background: #0d1116;
 	color: white;
@@ -16,7 +11,7 @@ body {
 	padding-right: 30px;
 }
 
-.container {
+.content {
 	display: flex;
 	justify-content: space-around;
 	align-items: flex-start;
@@ -50,7 +45,6 @@ h1 {
 	padding-top: 40px;
 	padding-right: 35px;
 	padding-left: 30px;
-	/* box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset, rgb(0 0 0 / 30%) 0px 18px 36px -18px inset; */
 }
 
 .item {
@@ -112,37 +106,47 @@ h1 {
 	border-radius: 50%;
 }
 
-.github-icon {
-	position: absolute;
-	bottom: 7px;
-	right: 12px;
-}
-
-@media (max-width: 1300px) {
-	.github-icon {
-		top: 7px;
-		right: 12px;
-	}
-}
-
-.github-icon img {
-	height: 20px;
-	width: 20px;
-	opacity: 30%;
-}
-
 .column-head {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 }
 
-.goto-icon {
+.goto-link {
 	margin-bottom: -5px;
 }
 
-.goto-icon img {
+.goto-icon {
 	height: 20px;
 	width: 20px;
 	opacity: 80%;
+}
+
+.github-icon {
+	display: inline-block;
+	position: absolute;
+	bottom: 1px;
+	right: 6px;
+	opacity: 20%;
+	transform: scale(0.8);
+}
+
+@media (max-width: 1300px) {
+	.github-icon {
+		display: inline-table;
+		left: 12px;
+		top: 10px;
+		transform: scale(1);
+	}
+	body {
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+	.column {
+		margin-top: 30px;
+	}
+	.items {
+		padding-left: 0px;
+		padding-right: 30px;
+	}
 }

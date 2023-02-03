@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"fmt"
@@ -11,7 +11,7 @@ type HNItem struct {
 	sitebit, link, title, info string
 }
 
-func parseHackerNews(id int, channel chan parseRes, page string) {
+func parseHackerNews(id int, channel chan ParseResult, page string) {
 	fmt.Println("Parse HackerNews...", page)
 	const url = "https://news.ycombinator.com"
 	items := make([]HNItem, 0)
@@ -43,8 +43,9 @@ func parseHackerNews(id int, channel chan parseRes, page string) {
 
 	// collect information from undertitle element
 	html.Find(".subtext").Each(func(i int, s *goquery.Selection) {
-		info := prettyStr(s.Text())
+		info := PrettyStr(s.Text())
 		info = strings.ReplaceAll(info, " | hide | ", " ")
+		info = strings.ReplaceAll(info, " | hide", " ")
 		info = strings.ReplaceAll(info, " | ", " ")
 		items[i].info = info
 	})
@@ -60,5 +61,5 @@ func parseHackerNews(id int, channel chan parseRes, page string) {
 		title += " Show"
 	}
 
-	channel <- parseRes{id, fmt.Sprintf(columnHtml, title, url+page, itemsHtml)}
+	channel <- ParseResult{id, fmt.Sprintf(columnHtml, title, url+page, itemsHtml)}
 }

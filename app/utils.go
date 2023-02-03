@@ -1,4 +1,4 @@
-package main
+package app
 
 import (
 	"encoding/json"
@@ -26,10 +26,11 @@ func fetchHtmlPage(url string) *goquery.Document {
 	return html
 }
 
-func prettyStr(str string) string {
+func PrettyStr(str string) string {
 	str = strings.Replace(str, "\t", "", -1)
 	str = strings.Replace(str, "\n", "", -1)
 	str = strings.Join(strings.Fields(str), " ")
+	str = strings.TrimSpace(str)
 	return str
 }
 
