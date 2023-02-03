@@ -1,4 +1,4 @@
-module pulse
+module github.com/norflin321/os-pulse
 
 go 1.19
 
