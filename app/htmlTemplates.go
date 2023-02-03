@@ -12,7 +12,7 @@ const baseHtml = `
 		</head>
 	<body>
 		<div class="container">%s</div>
-		<a class="github-icon" href="https://github.com/norflin321">
+		<a class="github-icon" href="https://github.com/norflin321/os-pulse">
 			<img src="assets/github.svg"/>
 		</a>
 	</body>
