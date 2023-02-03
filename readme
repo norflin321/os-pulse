@@ -1,7 +1,6 @@
 go build -o ./out ./app
 
 it parses content from websites listed below every minute, and updates static html file (which is served on home page).
-PS. pull request for adding new website would be appreciated ^_^
 
 Websites:
 1. [x] https://github.com/trending
