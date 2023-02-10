@@ -35,7 +35,7 @@ func PrettyStr(str string) string {
 }
 
 func prettyStruct(v interface{}) string {
-	return fmt.Sprintf("%+v \n", v)
+	return fmt.Sprintf("%+v", v)
 }
 
 func prettyMap(a interface{}) string {

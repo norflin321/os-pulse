@@ -19,10 +19,10 @@ func parseHackerNews(id int, channel chan ParseResult, page string) {
 	html := fetchHtmlPage(url + page)
 
 	// collect information from title element
-	html.Find(".athing").Each(func(i int, s *goquery.Selection) {
+	html.Find(".athing").Each(func(i int, el *goquery.Selection) {
 		item := HNItem{}
 
-		titleEl := s.Find(".titleline")
+		titleEl := el.Find(".titleline")
 		link, _ := titleEl.Find("a").Attr("href")
 		sitebitEl := titleEl.Find(".sitebit").Find("a")
 		sitebit := ""

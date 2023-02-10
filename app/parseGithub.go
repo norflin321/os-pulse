@@ -17,15 +17,15 @@ func parseGithub(id int, channel chan ParseResult) {
 	items := make([]GithubItem, 0)
 
 	// parse wepage and collect information
-	fetchHtmlPage(url).Find("article").Each(func(_ int, article *goquery.Selection) {
+	fetchHtmlPage(url).Find("article").Each(func(_ int, el *goquery.Selection) {
 		item := GithubItem{}
-		link, _ := article.Find(".lh-condensed").Find("a").Attr("href")
+		link, _ := el.Find(".lh-condensed").Find("a").Attr("href")
 		item.link = "https://github.com" + link
-		item.title = PrettyStr(article.Find("h1").Text())
-		item.desc = PrettyStr(article.Find("p").Text())
+		item.title = PrettyStr(el.Find("h1").Text())
+		item.desc = PrettyStr(el.Find("p").Text())
 
 		// find language element and color
-		langColorEl := article.Find(".repo-language-color").Nodes
+		langColorEl := el.Find(".repo-language-color").Nodes
 		langColor := ""
 		if len(langColorEl) > 0 {
 			colorAttr := langColorEl[0].Attr[1].Val
@@ -34,7 +34,7 @@ func parseGithub(id int, channel chan ParseResult) {
 		item.langColor = langColor
 
 		// find info element
-		info := PrettyStr(article.Find(".d-inline-block").Text())
+		info := PrettyStr(el.Find(".d-inline-block").Text())
 		infoSlice := strings.Fields(info)
 		if len(langColor) == 0 {
 			infoSlice = append([]string{""}, infoSlice...)

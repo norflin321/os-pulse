@@ -21,6 +21,9 @@ func main() {
 	go app.UpdateContent(&content)
 
 	http.HandleFunc("/", func(res http.ResponseWriter, req *http.Request) {
+		if content == "" {
+			content = `<div class="err">no data, refresh later</div>`
+		}
 		data := map[string]interface{}{
 			"content": template.HTML(content),
 			"css":     template.CSS(app.PrettyStr(string(css))),

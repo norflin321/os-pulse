@@ -5,13 +5,14 @@ html {
 body {
 	font-family: 'JetBrains Mono', monospace;
 	margin: 0;
-	background: #0d1116;
 	color: white;
 	padding-left: 30px;
 	padding-right: 30px;
+	background-image: radial-gradient(circle 80vw at 50%, #070335 0%, #0d1116 97.5%);
 }
 
 .content {
+	position: relative;
 	display: flex;
 	justify-content: space-around;
 	align-items: flex-start;
@@ -20,7 +21,9 @@ body {
 }
 
 .column {
-	padding-top: 30px
+	padding-top: 30px;
+	max-width: 22%;
+	min-width: 300px;
 }
 
 @media (max-width: 1300px) {
@@ -42,13 +45,11 @@ h1 {
 	border-bottom: 0.5px;
 	border-bottom-style: dashed;
 	border-color: #BBB5AC;
-	padding-top: 40px;
-	padding-right: 35px;
-	padding-left: 30px;
+	padding-top: 30px;
+	padding-right: 25px;
 }
 
 .item {
-	max-width: 340px;
 	margin-bottom: 30px;
 	display: flex;
 	flex-direction: column;
@@ -131,6 +132,14 @@ h1 {
 	transform: scale(0.8);
 }
 
+.err {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+/* -- adaptive styles -- */
 @media (max-width: 1300px) {
 	.github-icon {
 		display: inline-table;
@@ -144,9 +153,5 @@ h1 {
 	}
 	.column {
 		margin-top: 30px;
-	}
-	.items {
-		padding-left: 0px;
-		padding-right: 30px;
 	}
 }

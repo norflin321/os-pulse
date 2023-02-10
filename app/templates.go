@@ -56,3 +56,10 @@ const hackerNewsItemHtml = `
 	<div class="info">%s</div>
 </div>
 `
+
+const yandexItemHtml = `
+<div class="item">
+	<a class="title" href="%s">%s</a>
+	<div class="info">%s</div>
+</div>
+`
