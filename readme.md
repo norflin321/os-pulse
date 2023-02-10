@@ -7,8 +7,4 @@ it serves a static html file with content from resources listed below, which is 
 - https://github.com/trending
 - https://news.ycombinator.com
 - https://news.ycombinator.com/show
-
-TODO:
-- add new column with russian content, from resources listed below
-  - https://thecode.media
-  - https://academy.yandex.ru/journal
+- ...
