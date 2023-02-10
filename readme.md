@@ -1,4 +1,4 @@
-<img width="1624" alt="Screenshot 2023-02-10 at 9 19 48 AM" src="https://user-images.githubusercontent.com/33498670/218020900-28b4321d-5e77-4239-8295-12c021c0719a.png">
+<img width="1624" alt="Screenshot 2023-02-10 at 9 45 24 AM" src="https://user-images.githubusercontent.com/33498670/218022033-37c91707-fc78-4bf4-b16c-1a19fc0cdc48.png">
 
 `go run .`
 
