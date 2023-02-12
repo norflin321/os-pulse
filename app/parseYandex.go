@@ -2,24 +2,20 @@ package app
 
 import (
 	"fmt"
+	"sort"
+	"strings"
 
 	"github.com/PuerkitoBio/goquery"
 )
 
-var postClassNames = [...]string{
-	".PostPreviewDouble_preview-double__H_5Se",
-	".PostPreviewTriple_preview-triple__bYk8m",
-	".PostPreviewMinor_preview-minor__dc_bH",
-	".PostPreviewBanner_preview-banner__zN64X",
-	".PostPreviewYellow_preview-yellow__6oVVr",
-}
-
 type YandexItem struct {
 	title, link, info string
+	timestamp         int64
 }
 
-func parseYandex(id int, channel chan ParseResult) {
-	fmt.Println("Parse Yandex...")
+func parseYandexAcademyPage(pageChannel chan []YandexItem) {
+	fmt.Println("Parse Yandex Academy...")
+	var postClassNames = [...]string{".PostPreviewDouble_preview-double__H_5Se", ".PostPreviewTriple_preview-triple__bYk8m", ".PostPreviewMinor_preview-minor__dc_bH", ".PostPreviewBanner_preview-banner__zN64X", ".PostPreviewYellow_preview-yellow__6oVVr"}
 	const url = "https://academy.yandex.ru/journal"
 	items := make([]YandexItem, 0)
 
@@ -43,9 +39,68 @@ func parseYandex(id int, channel chan ParseResult) {
 				})
 				timeEl := postEl.Find("time")
 				item.info += timeEl.Text()
+
+				// get date
+				infoSlice := strings.Split(item.info, " ")
+				if len(infoSlice) >= 3 {
+					ruDate := strings.Join(infoSlice[len(infoSlice)-3:], " ")
+					date, err := parceRuDate(ruDate)
+					if err == nil {
+						item.timestamp = date.Unix()
+					}
+				}
+				if item.timestamp == 0 {
+					return
+				}
+
 				items = append(items, item)
 			})
 		}
+	})
+	pageChannel <- items
+}
+
+func parseYandexCodePage(pageChannel chan []YandexItem) {
+	fmt.Println("Parse Yandex Code...")
+	const url = "https://thecode.media/"
+	items := make([]YandexItem, 0)
+
+	fetchHtmlPage(url).Find(".main-category-post").Each(func(_ int, postEl *goquery.Selection) {
+		item := YandexItem{}
+
+		item.title = PrettyStr(postEl.Find(".main-category-post__title").Text())
+		item.link, _ = postEl.Attr("href")
+		item.info = PrettyStr(postEl.Find(".main-category-post__date").Text())
+
+		// get date
+		if item.info != "" {
+			date, err := parceRuDate(item.info)
+			if err == nil {
+				item.timestamp = date.Unix()
+			}
+		}
+		if item.timestamp == 0 {
+			return
+		}
+
+		items = append(items, item)
+	})
+	pageChannel <- items
+}
+
+func parseYandexPages(id int, channel chan ParseResult) {
+	pageChannel := make(chan []YandexItem, 2)
+	go parseYandexAcademyPage(pageChannel)
+	go parseYandexCodePage(pageChannel)
+
+	items := make([]YandexItem, 0)
+	items = append(items, <-pageChannel...)
+	items = append(items, <-pageChannel...)
+	items = unique(items)
+
+	// sort by time of publication
+	sort.Slice(items, func(i, j int) bool {
+		return items[i].timestamp > items[j].timestamp
 	})
 
 	// create html
@@ -53,5 +108,5 @@ func parseYandex(id int, channel chan ParseResult) {
 	for _, item := range items {
 		itemsHtml += fmt.Sprintf(yandexItemHtml, item.link, item.title, item.info)
 	}
-	channel <- ParseResult{id, fmt.Sprintf(columnHtml, "Yandex Academy", url, itemsHtml)}
+	channel <- ParseResult{id, fmt.Sprintf(columnHtml, "Yandex Journal", "https://thecode.media/", itemsHtml)}
 }
