@@ -7,3 +7,4 @@ it serves a static html file with content from resources listed below, which is 
 - https://news.ycombinator.com
 - https://news.ycombinator.com/show
 - https://academy.yandex.ru/journal
+- https://thecode.media
