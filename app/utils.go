@@ -47,7 +47,7 @@ func prettyMap(a interface{}) string {
 }
 
 func unique[T comparable](s []T) []T {
-	inResult := make(map[T]bool)
+	inResult := map[T]bool{}
 	var result []T
 	for _, str := range s {
 		if _, ok := inResult[str]; !ok {

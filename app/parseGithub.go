@@ -14,7 +14,7 @@ type GithubItem struct {
 func parseGithub(id int, channel chan ParseResult) {
 	fmt.Println("Parse Github...")
 	const url = "https://github.com/trending"
-	items := make([]GithubItem, 0)
+	items := []GithubItem{}
 
 	// parse wepage and collect information
 	fetchHtmlPage(url).Find("article").Each(func(_ int, el *goquery.Selection) {

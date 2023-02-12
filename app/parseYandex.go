@@ -17,7 +17,7 @@ func parseYandexAcademyPage(pageChannel chan []YandexItem) {
 	fmt.Println("Parse Yandex Academy...")
 	var postClassNames = [...]string{".PostPreviewDouble_preview-double__H_5Se", ".PostPreviewTriple_preview-triple__bYk8m", ".PostPreviewMinor_preview-minor__dc_bH", ".PostPreviewBanner_preview-banner__zN64X", ".PostPreviewYellow_preview-yellow__6oVVr"}
 	const url = "https://academy.yandex.ru/journal"
-	items := make([]YandexItem, 0)
+	items := []YandexItem{}
 
 	// try to find rows of posts
 	fetchHtmlPage(url).Find(".Pattern_pattern__57Vkx").Each(func(_ int, rowEl *goquery.Selection) {
@@ -63,7 +63,7 @@ func parseYandexAcademyPage(pageChannel chan []YandexItem) {
 func parseYandexCodePage(pageChannel chan []YandexItem) {
 	fmt.Println("Parse Yandex Code...")
 	const url = "https://thecode.media/"
-	items := make([]YandexItem, 0)
+	items := []YandexItem{}
 
 	fetchHtmlPage(url).Find(".main-category-post").Each(func(_ int, postEl *goquery.Selection) {
 		item := YandexItem{}
@@ -93,7 +93,7 @@ func parseYandexPages(id int, channel chan ParseResult) {
 	go parseYandexAcademyPage(pageChannel)
 	go parseYandexCodePage(pageChannel)
 
-	items := make([]YandexItem, 0)
+	items := []YandexItem{}
 	items = append(items, <-pageChannel...)
 	items = append(items, <-pageChannel...)
 	items = unique(items)

@@ -14,7 +14,7 @@ type HNItem struct {
 func parseHackerNews(id int, channel chan ParseResult, page string) {
 	fmt.Println("Parse HackerNews...", page)
 	const url = "https://news.ycombinator.com"
-	items := make([]HNItem, 0)
+	items := []HNItem{}
 
 	html := fetchHtmlPage(url + page)
 
