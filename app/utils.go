@@ -3,6 +3,7 @@ package app
 import (
 	"encoding/json"
 	"fmt"
+	"html"
 	"log"
 	"net/http"
 	"strconv"
@@ -81,4 +82,12 @@ func parceRuDate(inDate string) (time.Time, error) {
 		return time.Time{}, err
 	}
 	return outDate, nil
+}
+
+func sprintfSafely(outHtml string, insertingStrings ...string) string {
+	var escapedStrings []any
+	for _, str := range insertingStrings {
+		escapedStrings = append(escapedStrings, html.EscapeString(str))
+	}
+	return fmt.Sprintf(outHtml, escapedStrings...)
 }

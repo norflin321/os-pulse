@@ -106,7 +106,7 @@ func parseYandexPages(id int, channel chan ParseResult) {
 	// create html
 	itemsHtml := ""
 	for _, item := range items {
-		itemsHtml += fmt.Sprintf(yandexItemHtml, item.link, item.title, item.info)
+		itemsHtml += sprintfSafely(yandexItemHtml, item.link, item.title, item.info)
 	}
 	channel <- ParseResult{id, fmt.Sprintf(columnHtml, "Yandex Journal", "https://thecode.media/", itemsHtml)}
 }

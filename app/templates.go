@@ -21,7 +21,10 @@ const githubItemHtml = `
 	<a class="title" href="%s">%s</a>
 	<div class="desc">%s</div>
 	<div class="info">
-		%s
+		<div class="lang">
+			<div class="icon" style="background-color: %s"></div>
+			<div class="text">%s</div>
+		</div>
 		<div class="stars">
 			<div class="icon">
 				<svg xmlns="http://www.w3.org/2000/svg" fill="#BBB5AC" aria-label="star" role="img" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true" class="octicon octicon-star">

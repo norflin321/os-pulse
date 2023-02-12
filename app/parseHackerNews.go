@@ -53,7 +53,7 @@ func parseHackerNews(id int, channel chan ParseResult, page string) {
 	// create html
 	itemsHtml := ""
 	for _, item := range items {
-		itemsHtml += fmt.Sprintf(hackerNewsItemHtml, item.link, item.title, item.info)
+		itemsHtml += sprintfSafely(hackerNewsItemHtml, item.link, item.title, item.info)
 	}
 
 	title := "Hacker News"

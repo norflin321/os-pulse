@@ -45,23 +45,18 @@ func parseGithub(id int, channel chan ParseResult) {
 		item.forks = infoSlice[2]
 		item.starsToday = infoSlice[5]
 
+		if item.lang == "" {
+			item.lang = "Markdown"
+			item.langColor = "#BBB5AC"
+		}
+
 		items = append(items, item)
 	})
 
 	// create html
 	itemsHtml := ""
 	for _, item := range items {
-		langDiv := ""
-		if item.lang != "" {
-			langDiv = `
-			<div class="lang">
-				<div class="icon" style="background-color: %s"></div>
-				<div class="text">%s</div>
-			</div>
-			`
-			langDiv = fmt.Sprintf(langDiv, item.langColor, item.lang)
-		}
-		itemsHtml += fmt.Sprintf(githubItemHtml, item.link, item.title, item.desc, langDiv, item.stars, item.forks, item.starsToday)
+		itemsHtml += sprintfSafely(githubItemHtml, item.link, item.title, item.desc, item.langColor, item.lang, item.stars, item.forks, item.starsToday)
 	}
 
 	channel <- ParseResult{id, fmt.Sprintf(columnHtml, "Github Trending", url, itemsHtml)}
