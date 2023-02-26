@@ -47,7 +47,6 @@ func parseGithub(id int, channel chan ParseResult) {
 
 		if item.lang == "" {
 			item.lang = "Markdown"
-			item.langColor = "#BBB5AC"
 		}
 
 		items = append(items, item)
