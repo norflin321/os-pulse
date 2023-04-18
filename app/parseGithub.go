@@ -21,7 +21,7 @@ func parseGithub(id int, channel chan ParseResult) {
 		item := GithubItem{}
 		link, _ := el.Find(".lh-condensed").Find("a").Attr("href")
 		item.link = "https://github.com" + link
-		item.title = PrettyStr(el.Find("h1").Text())
+		item.title = PrettyStr(el.Find("h2").Text())
 		item.desc = PrettyStr(el.Find("p").Text())
 
 		// find language element and color
