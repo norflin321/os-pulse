@@ -32,6 +32,6 @@ func UpdateContent(content *string) {
 	}
 
 	fmt.Println("-- updated", time.Now().Format("2006-01-02 15:04:05"))
-	time.Sleep(time.Second * 60 * 10)
+	time.Sleep(time.Second * 60 * 5)
 	UpdateContent(content)
 }
