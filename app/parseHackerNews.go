@@ -56,9 +56,12 @@ func parseHackerNews(id int, channel chan ParseResult, page string) {
 		itemsHtml += sprintfSafely(hackerNewsItemHtml, item.link, item.title, item.info)
 	}
 
-	title := "Hacker News"
+	title := "HN"
 	if page == "/show" {
 		title += " Show"
+	}
+	if page == "/newest" {
+		title += " New"
 	}
 
 	channel <- ParseResult{id, fmt.Sprintf(columnHtml, title, url+page, itemsHtml)}

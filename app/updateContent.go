@@ -15,9 +15,9 @@ func UpdateContent(content *string) {
 
 	// parse websites at the same time
 	go parseGithub(0, channel)
-	go parseHackerNews(1, channel, "/")
+	go parseHackerNews(1, channel, "/newest")
 	go parseHackerNews(2, channel, "/show")
-	go parseYandexPages(3, channel)
+	go parseHackerNews(3, channel, "/")
 
 	// await for all parse websites results, and sort them by id
 	parseResults := make([]ParseResult, 4, 4)
