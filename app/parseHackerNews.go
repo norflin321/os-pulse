@@ -47,6 +47,17 @@ func parseHackerNews(id int, channel chan ParseResult, page string) {
 		info = strings.ReplaceAll(info, " | hide | ", " ")
 		info = strings.ReplaceAll(info, " | hide", " ")
 		info = strings.ReplaceAll(info, " | ", " ")
+
+		// remove extra informatino from 'info' string
+		infoSlice := strings.Split(info, " ")
+		idx := indexOf("by", infoSlice)
+		if idx > 0 {
+			end := infoSlice[idx+2:]
+			end = removeStr(end, "discuss")
+			end = removeStr(end, "past")
+			info = strings.Join(append(infoSlice[:idx], end...), " ")
+		}
+
 		items[i].info = info
 	})
 

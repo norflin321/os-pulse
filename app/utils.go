@@ -91,3 +91,21 @@ func sprintfSafely(outHtml string, insertingStrings ...string) string {
 	}
 	return fmt.Sprintf(outHtml, escapedStrings...)
 }
+
+func indexOf(element string, data []string) int {
+	for k, v := range data {
+		if element == v {
+			return k
+		}
+	}
+	return -1
+}
+
+func removeStr[T comparable](l []T, item T) []T {
+	for i, other := range l {
+		if other == item {
+			return append(l[:i], l[i+1:]...)
+		}
+	}
+	return l
+}
