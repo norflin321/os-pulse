@@ -17,13 +17,16 @@ body {
 	align-items: flex-start;
 	height: 100vh;
 	flex-wrap: wrap;
-	padding-left: 10px;
-	padding-right: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.items {
+	padding-top: 10px;
 }
 
 .column {
-	padding-top: 10px;
-	max-width: 20%;
+	max-width: 19%;
 	max-height: 100vh;
 	overflow-y: scroll;
 }
