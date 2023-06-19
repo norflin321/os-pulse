@@ -6,12 +6,12 @@ import (
 )
 
 type ParseResult struct {
-	id   int
+	id   uint8
 	html string
 }
 
 func UpdateContent(content *string) {
-	const n = 5
+	const n uint8 = 5
 	ch := make(chan ParseResult, n)
 
 	go parseGithub(0, ch)

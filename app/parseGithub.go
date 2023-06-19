@@ -11,7 +11,7 @@ type GithubItem struct {
 	link, title, desc, langColor, lang, stars, forks, starsToday string
 }
 
-func parseGithub(id int, channel chan ParseResult) {
+func parseGithub(id uint8, channel chan ParseResult) {
 	fmt.Println("Parse Github...")
 	const url = "https://github.com/trending"
 	items := []GithubItem{}

@@ -9,7 +9,7 @@ processes = []
   builder = "paketobuildpacks/builder:base"
   buildpacks = ["gcr.io/paketo-buildpacks/go"]
 	[build.args]
-		CGO_ENABLED = 1
+		CGO_ENABLED = "1"
 
 
 [env]

@@ -88,7 +88,7 @@ func parseYandexCodePage(pageChannel chan []YandexItem) {
 	pageChannel <- items
 }
 
-func parseYandexPages(id int, channel chan ParseResult) {
+func parseYandexPages(id uint8, channel chan ParseResult) {
 	pageChannel := make(chan []YandexItem, 2)
 	go parseYandexAcademyPage(pageChannel)
 	go parseYandexCodePage(pageChannel)

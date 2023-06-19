@@ -11,7 +11,7 @@ type HNItem struct {
 	sitebit, link, title, info string
 }
 
-func parseHackerNews(id int, channel chan ParseResult, page string) {
+func parseHackerNews(id uint8, channel chan ParseResult, page string) {
 	fmt.Println("Parse HackerNews...", page)
 	const url = "https://news.ycombinator.com"
 	items := []HNItem{}
