@@ -3,6 +3,7 @@
 - `go run .`
 - `flyctl auth login`
 - `flyctl deploy`
+- `flyctl open`
 
 it serves a static html file with content from resources listed below, which is updated every 10 minutes
 - https://github.com/trending
