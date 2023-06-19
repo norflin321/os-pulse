@@ -64,7 +64,7 @@ func parseHackerNews(id int, channel chan ParseResult, page string) {
 	// create html
 	itemsHtml := ""
 	for _, item := range items {
-		itemsHtml += sprintfSafely(hackerNewsItemHtml, item.link, item.title, item.info)
+		itemsHtml += sprintfSafely(defaultItemHtmlTemplate, item.link, item.title, item.info)
 	}
 
 	title := "HN"
@@ -75,5 +75,5 @@ func parseHackerNews(id int, channel chan ParseResult, page string) {
 		title += " New"
 	}
 
-	channel <- ParseResult{id, fmt.Sprintf(columnHtml, title, url+page, itemsHtml)}
+	channel <- ParseResult{id, fmt.Sprintf(columnHtml, itemsHtml)}
 }

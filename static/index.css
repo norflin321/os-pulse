@@ -6,9 +6,8 @@ body {
 	font-family: 'JetBrains Mono', monospace;
 	margin: 0;
 	color: white;
-	padding-left: 30px;
-	padding-right: 30px;
-	background-image: radial-gradient(circle 80vw at 50%, #070335 0%, #0d1116 97.5%);
+
+	background-image: linear-gradient(109.6deg, rgba(60, 19, 19, 1), rgba(37, 7, 72, 1)); 
 }
 
 .content {
@@ -18,12 +17,15 @@ body {
 	align-items: flex-start;
 	height: 100vh;
 	flex-wrap: wrap;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .column {
-	padding-top: 30px;
-	max-width: 22%;
-	min-width: 300px;
+	padding-top: 10px;
+	max-width: 20%;
+	max-height: 100vh;
+	overflow-y: scroll;
 }
 
 @media (max-width: 1300px) {
@@ -37,20 +39,9 @@ h1 {
 	opacity: 80%;
 }
 
-.items {
-	height: 82vh;
-	overflow-y: scroll;
-	border-top: 1px;
-	border-top-style: dashed;
-	border-bottom: 0.5px;
-	border-bottom-style: dashed;
-	border-color: #BBB5AC;
-	padding-top: 30px;
-	padding-right: 25px;
-}
-
 .item {
-	margin-bottom: 30px;
+	padding-right: 20px;
+	margin-bottom: 25px;
 	display: flex;
 	flex-direction: column;
 	gap: 7px;
@@ -123,35 +114,9 @@ h1 {
 	opacity: 80%;
 }
 
-.github-icon {
-	display: inline-block;
-	position: absolute;
-	bottom: 1px;
-	right: 6px;
-	opacity: 20%;
-	transform: scale(0.8);
-}
-
 .err {
 	position: absolute;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-}
-
-/* -- adaptive styles -- */
-@media (max-width: 1300px) {
-	.github-icon {
-		display: inline-table;
-		left: 12px;
-		top: 10px;
-		transform: scale(1);
-	}
-	body {
-		padding-left: 50px;
-		padding-right: 50px;
-	}
-	.column {
-		margin-top: 30px;
-	}
 }

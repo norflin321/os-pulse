@@ -16,7 +16,6 @@ func parseGithub(id int, channel chan ParseResult) {
 	const url = "https://github.com/trending"
 	items := []GithubItem{}
 
-	// parse wepage and collect information
 	fetchHtmlPage(url).Find("article").Each(func(_ int, el *goquery.Selection) {
 		item := GithubItem{}
 		link, _ := el.Find(".lh-condensed").Find("a").Attr("href")
@@ -26,7 +25,7 @@ func parseGithub(id int, channel chan ParseResult) {
 
 		// find language element and color
 		langColorEl := el.Find(".repo-language-color").Nodes
-		langColor := ""
+		langColor := "#ccc"
 		if len(langColorEl) > 0 {
 			colorAttr := langColorEl[0].Attr[1].Val
 			langColor = colorAttr[len(colorAttr)-7:]
@@ -55,8 +54,8 @@ func parseGithub(id int, channel chan ParseResult) {
 	// create html
 	itemsHtml := ""
 	for _, item := range items {
-		itemsHtml += sprintfSafely(githubItemHtml, item.link, item.title, item.desc, item.langColor, item.lang, item.stars, item.forks, item.starsToday)
+		itemsHtml += sprintfSafely(githubItemHtmlTemplate, item.link, item.title, item.desc, item.langColor, item.lang, item.stars, item.forks, item.starsToday)
 	}
 
-	channel <- ParseResult{id, fmt.Sprintf(columnHtml, "Github Trending", url, itemsHtml)}
+	channel <- ParseResult{id, fmt.Sprintf(columnHtml, itemsHtml)}
 }

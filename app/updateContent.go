@@ -11,17 +11,18 @@ type ParseResult struct {
 }
 
 func UpdateContent(content *string) {
-	channel := make(chan ParseResult, 4)
+	const n = 5
+	ch := make(chan ParseResult, n)
 
-	// parse websites at the same time
-	go parseGithub(0, channel)
-	go parseHackerNews(1, channel, "/newest")
-	go parseHackerNews(2, channel, "/show")
-	go parseHackerNews(3, channel, "/")
+	go parseGithub(0, ch)
+	go parseHackerNews(1, ch, "/show")
+	go parseHackerNews(2, ch, "/")
+	go parseYandexPages(3, ch)
+	go parseHabrPages(4, ch)
 
-	// await for all parse websites results, and sort them by id
-	parseResults := make([]ParseResult, 4, 4)
-	for _, res := range []ParseResult{<-channel, <-channel, <-channel, <-channel} {
+	// await for all results, and sort them by id
+	parseResults := [n]ParseResult{}
+	for _, res := range [n]ParseResult{<-ch, <-ch, <-ch, <-ch, <-ch} {
 		parseResults[res.id] = res
 	}
 
