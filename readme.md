@@ -2,9 +2,9 @@
 ![alt](https://i.imgur.com/NEJaPwZ.jpg)
 
 - `go run .`
-- `flyctl auth login`
-- `flyctl deploy`
-- `flyctl open`
+- `fly auth login`
+- `fly deploy`
+- `fly open`
 
 it serves a static html file with content from resources listed below, which is updated every 5 minutes
 - https://github.com/trending
