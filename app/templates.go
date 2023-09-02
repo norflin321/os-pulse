@@ -3,8 +3,8 @@ package app
 const columnHtml = `<div class="items">%s</div>`
 
 const githubItemHtmlTemplate = `
-<div class="item">
-	<a class="title" href="%s">%s</a>
+<a class="item" href="%s">
+	<div class="title">%s</div>
 	<div class="desc">%s</div>
 	<div class="info">
 		<div class="lang">
@@ -36,12 +36,12 @@ const githubItemHtmlTemplate = `
 			<div class="text">%s today</div>
 		</div>
 	</div>
-</div>
+</a>
 `
 
 const defaultItemHtmlTemplate = `
-<div class="item">
-	<a class="title" href="%s">%s</a>
+<a class="item" href="%s">
+	<div class="title">%s</div>
 	<div class="info">%s</div>
-</div>
+</a>
 `

@@ -24,7 +24,8 @@ func main() {
 		if content == "" {
 			content = `<div class="err">no data, refresh later</div>`
 		}
-		data := map[string]interface{}{
+
+		data := map[string]any{
 			"content": template.HTML(content),
 			"css":     template.CSS(app.PrettyStr(string(css))),
 		}

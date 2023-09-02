@@ -1,3 +1,9 @@
+ /* https://www.magicpattern.design/tools/grid-background-pattern-generator */
+
+* {
+	cursor: none !important;
+}
+
 html {
 	color-scheme: dark !important;
 }
@@ -7,7 +13,9 @@ body {
 	margin: 0;
 	color: white;
 
-	background-image: linear-gradient(109.6deg, rgba(60, 19, 19, 1), rgba(37, 7, 72, 1)); 
+	background-color: #0b0315;
+	opacity: 1;
+	background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #0b0315 19px), repeating-linear-gradient(#2c174855, #2c1748);
 }
 
 .content {
@@ -26,9 +34,13 @@ body {
 }
 
 .column {
-	max-width: 19%;
+	max-width: 24%;
 	max-height: 100vh;
 	overflow-y: scroll;
+	box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6);
+}
+.column::-webkit-scrollbar {
+	display: none !important;
 }
 
 @media (max-width: 1300px) {
@@ -37,29 +49,31 @@ body {
 	}
 }
 
-h1 {
-	font-size: 23px;
-	opacity: 80%;
-}
-
 .item {
-	padding-right: 20px;
-	margin-bottom: 25px;
 	display: flex;
 	flex-direction: column;
 	gap: 7px;
+	/* padding: 10px; */
+	border: 10px rgb(44 23 72 / 0%) ridge;
+	margin-bottom: 10px;
+}
+
+.item:hover {
+	border: 10px rgb(44 23 72 / 100%) ridge;
 }
 
 
-.item a {
-	font-size: 14px;
-	color: #5CB8E4;
-	text-decoration: none;
-	width: fit-content;
+a, .title {
+	text-decoration: none !important;
 }
 
-.item a:visited {
-	color: #538296;
+.title {
+	color: #c1c1c1;
+	font-size: 15px;
+}
+
+a:visited .title {
+	color: #412E5A;
 }
 
 .title:hover {
@@ -67,16 +81,17 @@ h1 {
 }
 
 .desc {
-	font-size: 12px;
-	color: #F2F2F2;
+	font-size: 13px;
+	color: #c1c1c1;
 	opacity: 70%;
 }
 
 .info {
 	font-size: 11px;
-	color: #BBB5AC;
+	color: #c1c1c1;
 	display: flex;
 	justify-content: space-between;
+	opacity: 70%;
 }
 
 .icon {

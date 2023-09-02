@@ -11,9 +11,9 @@ type GithubItem struct {
 	link, title, desc, langColor, lang, stars, forks, starsToday string
 }
 
-func parseGithub(id uint8, channel chan ParseResult) {
+func parseGithub(id uint8, channel chan ParseResult, query string) {
 	fmt.Println("Parse Github...")
-	const url = "https://github.com/trending"
+	url := "https://github.com/trending" + query
 	items := []GithubItem{}
 
 	fetchHtmlPage(url).Find("article").Each(func(_ int, el *goquery.Selection) {
