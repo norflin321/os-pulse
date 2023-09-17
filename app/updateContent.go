@@ -14,9 +14,9 @@ func UpdateContent(content *string) {
 	const n uint8 = 4
 	ch := make(chan ParseResult, n)
 
-	go parseGithub(0, ch, "")
-	go parseGithub(1, ch, "?since=weekly")
-	// go parseHackerNews(1, ch, "/newest")
+	go parseGithub(0, ch, "?since=daily")
+	// go parseGithub(1, ch, "?since=weekly")
+	go parseHackerNews(1, ch, "/newest")
 	go parseHackerNews(2, ch, "/")
 	go parseHackerNews(3, ch, "/show")
 	// go parseYandexPages(4, ch)

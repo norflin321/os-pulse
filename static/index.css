@@ -1,9 +1,5 @@
  /* https://www.magicpattern.design/tools/grid-background-pattern-generator */
 
-* {
-	cursor: none !important;
-}
-
 html {
 	color-scheme: dark !important;
 }
@@ -13,9 +9,7 @@ body {
 	margin: 0;
 	color: white;
 
-	background-color: #0b0315;
-	opacity: 1;
-	background-image: repeating-radial-gradient(circle at 0 0, transparent 0, #0b0315 19px), repeating-linear-gradient(#2c174855, #2c1748);
+	background-image: radial-gradient(circle 80vw at 50%, #070335 0%, #0d1116 97.5%);
 }
 
 .content {
@@ -37,7 +31,6 @@ body {
 	max-width: 24%;
 	max-height: 100vh;
 	overflow-y: scroll;
-	box-shadow: -5px -5px 5px -5px rgba(34, 60, 80, 0.6);
 }
 .column::-webkit-scrollbar {
 	display: none !important;
@@ -54,12 +47,12 @@ body {
 	flex-direction: column;
 	gap: 7px;
 	/* padding: 10px; */
-	border: 10px rgb(44 23 72 / 0%) ridge;
+	border: 2px rgb(225 225 225 / 0%) dashed;
 	margin-bottom: 10px;
 }
 
 .item:hover {
-	border: 10px rgb(44 23 72 / 100%) ridge;
+	border: 2px rgb(225 225 225 / 80%) dashed;
 }
 
 
@@ -69,11 +62,11 @@ a, .title {
 
 .title {
 	color: #c1c1c1;
-	font-size: 15px;
+	font-size: 14px;
 }
 
 a:visited .title {
-	color: #412E5A;
+	color: #124431;
 }
 
 .title:hover {
