@@ -11,20 +11,20 @@ type ParseResult struct {
 }
 
 func UpdateContent(content *string) {
-	const n uint8 = 4
+	const n uint8 = 7
 	ch := make(chan ParseResult, n)
 
 	go parseGithub(0, ch, "?since=daily")
-	// go parseGithub(1, ch, "?since=weekly")
-	go parseHackerNews(1, ch, "/newest")
-	go parseHackerNews(2, ch, "/")
-	go parseHackerNews(3, ch, "/show")
-	// go parseYandexPages(4, ch)
-	// go parseHabrPages(4, ch)
+	go parseGithub(1, ch, "?since=weekly")
+	go parseHackerNews(2, ch, "/newest")
+	go parseHackerNews(3, ch, "/")
+	go parseHackerNews(4, ch, "/show")
+	go parseYandexPages(5, ch)
+	go parseHabrPages(6, ch)
 
 	// await for all results, and sort them by id
 	parseResults := [n]ParseResult{}
-	for _, res := range [n]ParseResult{<-ch, <-ch, <-ch, <-ch} {
+	for _, res := range [n]ParseResult{<-ch, <-ch, <-ch, <-ch, <-ch, <-ch, <-ch} {
 		parseResults[res.id] = res
 	}
 

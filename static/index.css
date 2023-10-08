@@ -13,12 +13,8 @@ body {
 }
 
 .content {
-	position: relative;
 	display: flex;
-	justify-content: space-around;
-	align-items: flex-start;
 	height: 100vh;
-	flex-wrap: wrap;
 	padding-left: 5px;
 	padding-right: 5px;
 }
@@ -28,9 +24,11 @@ body {
 }
 
 .column {
-	max-width: 24%;
 	max-height: 100vh;
 	overflow-y: scroll;
+	min-width: 360px;
+	margin-right: 10px;
+	max-width: 10%;
 }
 .column::-webkit-scrollbar {
 	display: none !important;
@@ -45,14 +43,13 @@ body {
 .item {
 	display: flex;
 	flex-direction: column;
-	gap: 7px;
-	/* padding: 10px; */
-	border: 2px rgb(225 225 225 / 0%) dashed;
-	margin-bottom: 10px;
+	padding: 5px;
+	border: 2px rgb(225 225 225 / 0%) solid;
+	margin: 2px;
 }
 
 .item:hover {
-	border: 2px rgb(225 225 225 / 80%) dashed;
+	border: 2px rgb(225 225 225 / 80%) solid;
 }
 
 
@@ -61,12 +58,12 @@ a, .title {
 }
 
 .title {
-	color: #c1c1c1;
+	color: #b0b0b0;
 	font-size: 14px;
 }
 
 a:visited .title {
-	color: #124431;
+	color: #383a6d;
 }
 
 .title:hover {
